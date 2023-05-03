@@ -3,4 +3,4 @@
 3 - Commit (Embalar os arquivos e pastas) [git commit -m "descrição do commit"]
 4 - Definir branch de desenvolvimento executando o comando [git branch -M <nomeDaBranch>]
 5 - Adicionar a url do repositório [git remote add origin https://github.com/byoliveira/Omma.git]
-6 - Fazer o push "Publicação" do commit com os arquivos executando o comando [  main -> main]
+6 - Fazer o push "Publicação" do commit com os arquivos executando o comando [ git push]
