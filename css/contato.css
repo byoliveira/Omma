@@ -1,0 +1,239 @@
+* {
+  margin: 0%;
+  padding: 0%;
+  box-sizing: border-box;
+  font-family: "Montserrat", sans-serif;
+}
+
+nav {
+  display: flex;
+  background-color: #ffa000;
+  justify-content: space-evenly;
+  width: auto;
+}
+
+nav ul li a {
+  color: white;
+  font-family: sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 20px;
+  list-style: none;
+}
+
+nav ul {
+  display: flex;
+}
+
+ul {
+  list-style: none;
+}
+
+nav ul li {
+  font-size: 30;
+  font-weight: 700;
+  padding: 7px 30px 7px 30px;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+  font-size: 30px;
+  text-decoration-line: none;
+}
+
+header {
+  display: flex;
+  background-color: #ffc107;
+  align-items: center;
+  justify-content: space-around;
+  position: relative;
+  box-shadow: 0px 4px 4px #b47303a4;
+}
+
+#main-internal {
+  margin-top: 107px;
+  padding: 0 120px 100px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#main-internal article {
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+#tags {
+  margin-bottom: 58px;
+}
+
+#tags span {
+  color: #176902;
+  font-size: 18px;
+  border: 1px solid #176902;
+  padding: 7px 25px;
+  border-radius: 47px;
+  margin-right: 19px;
+}
+
+#main-internal article h1 {
+  font-size: 50px;
+  font-weight: 700;
+  color: #ffa000;
+  margin-bottom: 28px;
+}
+
+#main-internal article img {
+  margin-bottom: 25px;
+}
+
+#main-internal article p {
+  max-width: 590px;
+}
+
+#main-internal article p strong {
+  font-weight: bold;
+}
+
+#main-internal article iframe {
+  margin-top: 37px;
+  margin-bottom: 35px;
+}
+
+#receitas-relacionadas {
+  padding-top: 71px;
+}
+
+#receitas-relacionadas h2 {
+  color: #ffa000;
+  font-size: 30px;
+  font-weight: 500;
+  margin-bottom: 27px;
+}
+
+#receitas-relacionadas article {
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  margin-bottom: 55px;
+  text-align: center;
+}
+
+#receitas-relacionadas article img {
+  margin-bottom: 12px;
+}
+
+#receitas-relacionadas article h3 {
+  font-size: 26px;
+  color: #000000;
+  font-weight: 600;
+  margin-bottom: 25px;
+}
+
+#receitas-relacionadas a {
+  text-decoration: none;
+}
+
+#contato {
+  margin: 97px 150px 133px;
+  display: flex;
+  justify-content: space-between;
+}
+
+#contato form {
+  flex-grow: 2;
+  margin-left: 15px;
+  border: 1px solid #ffa000;
+  border-radius: 20px;
+  padding: 66px 33px;
+  display: flex;
+  flex-direction: column;
+}
+
+#contato form h2 {
+  color: #ffc107;
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 67px;
+}
+
+#contato form input,
+#contato form textarea {
+  border: 1px solid #ffa000;
+  color: #58555d;
+  border-radius: 7px;
+  font-size: 16px;
+  padding: 7px 34px;
+  margin-bottom: 23px;
+}
+
+#contato form textarea {
+  padding-top: 34px;
+  padding-bottom: 34px;
+  margin-bottom: 16px;
+}
+
+#contato form input::placeholder,
+#contato form textarea::placeholder {
+  color: #58555d;
+}
+
+#contato form input:focus,
+#contato form textarea:focus {
+  outline: none;
+  color: #58555d;
+}
+
+#contato form button {
+  width: 165px;
+  font-size: 16px;
+  font-weight: 800;
+  color: white;
+  background: #ffc107;
+  border-radius: 50px;
+  border: none;
+  padding: 12px;
+}
+
+#cabecalho {
+  background-image: url("../img/alo-imagem.png");
+  padding: 49px 122px 186px;
+}
+
+#cabecalho h1 {
+  font-weight: 700;
+  font-size: 70px;
+  line-height: 85px;
+  text-transform: lowercase;
+
+  color: #ffffff;
+
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.36);
+  max-width: 419px;
+}
+
+footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  background-color: #ffc107;
+  align-items: flex-start;
+  justify-content: flex-start;
+  position: relative;
+  box-shadow: 0px 4px 4px #b47303a4;
+  margin: 0%;
+}
+
+#texto-footer {
+  text-align: center;
+  color: white;
+  display: block;
+  margin: auto;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+}

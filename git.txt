@@ -1,0 +1,2 @@
+1 - Iniciar o projeto GIT [git init]
+2 - Adicionar os arquivos e pastas rastreados [git add]
