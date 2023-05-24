@@ -1,5 +1,6 @@
 // Constantes do programa
 const programName = "Omma - Serviços em Gastronomia LTDA"
+var readlineSync = require('readline-sync');
 // const prompt = require('prompt-sync')({sigint: true});
 
 // Variáveis globais
@@ -32,10 +33,10 @@ function pergunta (mensagem){
     let continuar;
 
     do{
-        resposta = prompt(mensagem);
+        resposta = readlineSync.question(mensagem);
 
         do{
-            continuar = prompt(`Você digitou "${resposta}". Deseja salvar? (S/N)`);
+            continuar = readlineSync.question(`Voce digitou "${resposta}". Deseja salvar? (S/N)`);
             switch(continuar){
                 case "S":
                 case "s":
@@ -52,7 +53,7 @@ function pergunta (mensagem){
                     continuar = true;
                     break;
                 default:
-                    alert(`Desculpe, "${continuar}" não é resposta válida. Tente novamente.`);
+                    console.log(`Desculpe, "${continuar}" nao e resposta valida. Tente novamente.`);
                     continuar = "invalid";
             }
         }while(continuar === "invalid");
@@ -65,26 +66,26 @@ function cadastrarReceita (){//função responsável pelo cadastro das informaç
     console.log("***********************************************");
     console.log("*            CADASTRANDO RECEITA              *");
     console.log("***********************************************");
-    document.write("CADASTRANDO RECEITA<br><br>");
+    //document.write("CADASTRANDO RECEITA<br><br>");
 
     let Receita = templateReceitas; //Cria um objeto vazio para armazenar os dados. Ele é temporário.
     let ingrediente = templateIngrediente;
 
-    Receita.titulo = pergunta("Qual o título da receita a ser cadastrada? ");
-    document.write("Título: " + Receita.titulo + "<br>");
-    Receita.dificuldade = pergunta("Qual a dificuldade desta receita?");
-    document.write("Dificuldade: " + Receita.dificuldade + "<br>");
+    Receita.titulo = pergunta("Qual o titulo da receita a ser cadastrada? ");
+    //document.write("Título: " + Receita.titulo + "<br>");
+    Receita.dificuldade = pergunta("Qual a dificuldade desta receita? ");
+    //document.write("Dificuldade: " + Receita.dificuldade + "<br>");
     
     let maisIngredientes;
 
     console.log("Agora vamos cadastrar os ingredientes!");
     do{
-        ingrediente.nome = pergunta("Qual o nome do ingrediente?");
-        ingrediente.quantidade = pergunta("Qual a quantidade a ser utilizada?");
-        ingrediente.unidade = pergunta("Como este ingrediente é medido? (xícaras, gramas, quilos, etc)");
+        ingrediente.nome = pergunta("Qual o nome do ingrediente? ");
+        ingrediente.quantidade = pergunta("Qual a quantidade a ser utilizada? ");
+        ingrediente.unidade = pergunta("Como este ingrediente e medido? (xicaras, gramas, quilos, etc) ");
         
         Receita.ingredientes.push(ingrediente);
-        maisIngredientes = pergunta("Cadastrar mais ingredientes?"); 
+        maisIngredientes = pergunta("Cadastrar mais ingredientes? "); 
         
     }while(maisIngredientes === "S");
 
@@ -95,5 +96,5 @@ function cadastrarReceita (){//função responsável pelo cadastro das informaç
 
 cadastrarReceita();
 console.log(bancoDeReceitas);
-document.write(bancoDeReceitas);
+//document.write(bancoDeReceitas);
 
