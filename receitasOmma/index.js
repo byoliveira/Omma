@@ -18,7 +18,7 @@ let templateReceitas = { // Cria um ojeto em branco com a estrutura
     vegano: ""
 };
 
-let ingrediente = {
+let templateIngrediente = {
     quantidade: 0,//deve ser expresso em número
     unidade: "",//xícara, colher de sopa, Kg, etc
     nome: ""//nome do ingrediente
@@ -40,10 +40,13 @@ function pergunta (mensagem){
                 case "S":
                 case "s":
                 case "sim":
+                case "Sim":
                     continuar = false;
                     break;
                 case "N":
                 case "n":
+                case "Não":
+                case "Nao":
                 case "nao":
                 case "não":
                     continuar = true;
@@ -62,16 +65,35 @@ function cadastrarReceita (){//função responsável pelo cadastro das informaç
     console.log("***********************************************");
     console.log("*            CADASTRANDO RECEITA              *");
     console.log("***********************************************");
+    document.write("CADASTRANDO RECEITA<br><br>");
 
-    let = Receita = templateReceitas; //Cria um objeto vazio para armazenar os dados. Ele é temporário.
+    let Receita = templateReceitas; //Cria um objeto vazio para armazenar os dados. Ele é temporário.
+    let ingrediente = templateIngrediente;
 
-    let titulo = pergunta("Qual o título da receita a ser cadastrada? ");
+    Receita.titulo = pergunta("Qual o título da receita a ser cadastrada? ");
+    document.write("Título: " + Receita.titulo + "<br>");
+    Receita.dificuldade = pergunta("Qual a dificuldade desta receita?");
+    document.write("Dificuldade: " + Receita.dificuldade + "<br>");
+    
+    let maisIngredientes;
 
-    Receita.titulo = titulo;//Salva o titulo lido.
+    console.log("Agora vamos cadastrar os ingredientes!");
+    do{
+        ingrediente.nome = pergunta("Qual o nome do ingrediente?");
+        ingrediente.quantidade = pergunta("Qual a quantidade a ser utilizada?");
+        ingrediente.unidade = pergunta("Como este ingrediente é medido? (xícaras, gramas, quilos, etc)");
+        
+        Receita.ingredientes.push(ingrediente);
+        maisIngredientes = pergunta("Cadastrar mais ingredientes?"); 
+        
+    }while(maisIngredientes === "S");
+
     bancoDeReceitas.push(Receita);
-    console.log(bancoDeReceitas);    
+    
     
 }
 
 cadastrarReceita();
+console.log(bancoDeReceitas);
+document.write(bancoDeReceitas);
 
