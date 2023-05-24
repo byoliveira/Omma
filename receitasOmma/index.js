@@ -55,7 +55,10 @@ function confirmacao (mensagem){
     return continuar;
 }
 
-function cadastrarReceita (){//função responsável pelo cadastro das informações da receita.
+
+//função responsável pelo cadastro das informações da receita.
+
+function cadastrarReceita (){
     console.log("***********************************************");
     console.log("*            CADASTRANDO RECEITA              *");
     console.log("***********************************************");
@@ -69,7 +72,7 @@ function cadastrarReceita (){//função responsável pelo cadastro das informaç
     Receita.dificuldade = readlineSync.question("Qual a dificuldade desta receita? ");
     //document.write("Dificuldade: " + Receita.dificuldade + "<br>");
     
-    let adicionarMais;
+    let adicionarMais;//meio confuso, talvez mudar o nome para naoAdicionarMais?
 
     console.log("\nAgora vamos cadastrar os ingredientes!");//aqui, adicionamos ingredientes
     do{
@@ -98,14 +101,16 @@ function cadastrarReceita (){//função responsável pelo cadastro das informaç
 
     ingrediente.linkVideo = readlineSync.question("Adicione um link para o video da receita. Caso nao exista, digite \"N/A\"\n");
     ingrediente.vegano = readlineSync.question("Esta receita e vegana? (S/N) ");
+    
+    salvarReceita(Receita, bancoDeReceitas);
+    
+}
 
+function salvarReceita(receita, banco){
     if(confirmacao("Salvar receita? ") === false){
-         bancoDeReceitas.push(Receita);
+         banco.push(receita);
          console.log("\n >>> RECEITA SALVA COM SUCESSO! <<<\n");
-    }else console.log("\n >>> RECEITA NÃO SALVA! <<<\n");
-
-    
-    
+    }else console.log("\n >>> RECEITA NÃO SALVA! <<<\n"); 
 }
 
 cadastrarReceita();
