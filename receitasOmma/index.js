@@ -1,3 +1,17 @@
+/**********************************************************************
+ * 
+ * 
+ *    DESAFIO - PROGRAMA PARA CADASTRO DE RECEITAS OMMA
+ * 
+ *                ISAAC JERONIMO MOREIRA
+ *                  25 DE MAIO DE 2023
+ *                 GAMA ACADEMY - XP-51
+ * 
+ * 
+**********************************************************************/
+
+
+
 // Constantes do programa
 const companyName = "Omma - Serviços em Gastronomia LTDA"
 var readlineSync = require('readline-sync');
@@ -5,7 +19,27 @@ var readlineSync = require('readline-sync');
 
 // Variáveis globais
 
-let bancoDeReceitas = [];//Cria um banco de receitas vazio
+let bancoDeReceitas = [
+    { 
+        titulo:"Torresmo",
+        dificuldade:"facil",
+        ingredientes: ["Torresmo", "Sal", "Oleo"],// Array para indexar os ingredientes
+        //vazio para podermos adicionar mais objetos aqui dentro,
+        etapas:listaDeEtapas = ["Cortar Torresmo", "Fritar Torresmo", "Limpar a sujeira do Torresmo", "Sal no Torresmo", "Comer Torresmo"], // Array simples para armazenar passos (strings)
+        linkVideo: "https://www.youtube.com/shorts/h4Q2nC-A_zI",
+        vegano: "Nao"
+    },
+    { 
+        titulo:"Mousse de Limao",
+        dificuldade:"facil",
+        ingredientes: ["Limao", "Biscoito de Maizena", "Manteiga", "Leite Condensado", "Creme de Leite"],// Array para indexar os ingredientes
+        //vazio para podermos adicionar mais objetos aqui dentro,
+        etapas:listaDeEtapas = ["Amassa Biscoito de Maizena", "Bota na forma com manteiga", "Bate no Liquidificador"], // Array simples para armazenar passos (strings)
+        linkVideo: "https://www.youtube.com/shorts/Z7gchwUBEJ0",
+        vegano: "Nao"
+        },
+
+];//Cria um banco de receitas vazio
 
 let templateReceitas = { // Cria um ojeto em branco com a estrutura
                          //de como devem ser organizados os dados
@@ -65,7 +99,16 @@ function cadastrarReceita (banco){
     console.log("*            CADASTRANDO RECEITA              *");
     console.log("***********************************************");
     //document.write("CADASTRANDO RECEITA<br><br>");
-
+    templateReceitas = { // Cria um ojeto em branco com a estrutura
+                            //de como devem ser organizados os dados
+                    titulo:"",
+                    dificuldade:"",
+                    ingredientes: [],// Array para indexar os ingredientes
+                    //vazio para podermos adicionar mais objetos aqui dentro,
+                    etapas:listaDeEtapas = [], // Array simples para armazenar passos (strings)
+                    linkVideo: "",
+                    vegano: ""
+                    };
     let Receita = templateReceitas; //Cria um objeto vazio para armazenar os dados. Ele é temporário.
    
 
@@ -116,7 +159,7 @@ function salvarReceita(receita, banco){
 }
 
 function deletarReceita(banco){
-    let element = readlineSync.question("Qual o índice da receita a ser deletada?\n"); 
+    let element = readlineSync.question("Qual o indice da receita a ser deletada?\n(OBS: os indicies comecam por 0): "); 
     
     if(element < banco.length){
         if(confirmacao("Deletar receita? ") === false){
@@ -132,9 +175,9 @@ function deletarReceita(banco){
 }
 
 function exibirReceita(banco){
-    banco.forEach(element => {
-        console.log(element);
-    });    
+    console.log(`A ${companyName} possui ${banco.length} receitas cadastradas.\n`);
+    function mostrar(element){console.log(element);}
+    banco.forEach(mostrar);
 }
 
 //OK, daqui pra frente vamos criar a interface de interação com o usuário
@@ -176,7 +219,7 @@ do{
         case "Sair":
         case "SAIR":
         case "exit":
-                console.log(`\N >>> OBRIGADO POR UTILIZAR O EDITOR DE RECEITAS DA ${companyName}\n`);
+                console.log(`\n >>> OBRIGADO POR UTILIZAR O EDITOR DE RECEITAS DA <<<\n    ${companyName}\n`);
                 continuarLoop = false;
                 break;
         default:
