@@ -52,14 +52,6 @@ let templateReceitas = { // Cria um ojeto em branco com a estrutura
     vegano: ""
 };
 
-//Beleza, vamos usar essa idéia depois
-
-// let templateIngrediente = {
-//     quantidade: 0,//deve ser expresso em número
-//     unidade: "",//xícara, colher de sopa, Kg, etc
-//     nome: ""//nome do ingrediente
-// };
-
 //Ok, let the fun begin
 
 //O programa vai perguntar e pedir validação inúmeras vezes. Melhor tornar esse processo uma função :)
@@ -98,8 +90,9 @@ function cadastrarReceita (banco){
     console.log("***********************************************");
     console.log("*            CADASTRANDO RECEITA              *");
     console.log("***********************************************");
-    //document.write("CADASTRANDO RECEITA<br><br>");
-    templateReceitas = { // Cria um ojeto em branco com a estrutura
+    
+    //neste ponto, tive zerar o template e passá-lo para o temporário Receita
+    let templateReceitas = { // Cria um ojeto em branco com a estrutura
                             //de como devem ser organizados os dados
                     titulo:"",
                     dificuldade:"",
@@ -113,11 +106,11 @@ function cadastrarReceita (banco){
    
 
     Receita.titulo = readlineSync.question("Qual o titulo da receita a ser cadastrada? ");
-    //document.write("Título: " + Receita.titulo + "<br>");
-    Receita.dificuldade = readlineSync.question("Qual a dificuldade desta receita? ");
-    //document.write("Dificuldade: " + Receita.dificuldade + "<br>");
     
-    let adicionarMais;//meio confuso, talvez mudar o nome para naoAdicionarMais?
+    Receita.dificuldade = readlineSync.question("Qual a dificuldade desta receita? ");
+    
+    
+    let naoAdicionarMais;//meio confuso, talvez mudar o nome para naoAdicionarMais?
 
     let ingrediente;//variável responsável por guardar os ingredientes temporariamente.
 
@@ -128,7 +121,7 @@ function cadastrarReceita (banco){
         Receita.ingredientes.push(ingrediente);
         adicionarMais = confirmacao("Cadastrar mais ingredientes? "); 
         
-    }while(adicionarMais === false);
+    }while(naoAdicionarMais === false);
 
     let etapa;
 
@@ -136,57 +129,57 @@ function cadastrarReceita (banco){
 
     etapa = readlineSync.question("Qual o primeiro passo da receita?\n"); 
     Receita.etapas.push(etapa);
-    adicionarMais = confirmacao("Cadastrar mais passos? ");
+    naoAdicionarMais = confirmacao("Cadastrar mais passos? ");
 
-    while(adicionarMais === false){
+    while(naoAdicionarMais === false){
         etapa = readlineSync.question("Qual o proximo passo da receita?\n"); 
         Receita.etapas.push(etapa);
-        adicionarMais = confirmacao("Cadastrar mais passos? ");         
+        naoAdicionarMais = confirmacao("Cadastrar mais passos? ");         
     }
 
     Receita.linkVideo = readlineSync.question("Adicione um link para o video da receita. Caso nao exista, digite \"N/A\"\n");
     Receita.vegano = readlineSync.question("Esta receita e vegana? (S/N) ");
     
-    salvarReceita(Receita, banco);
-    
+    salvarReceita(Receita, banco);    
 }
 
 function salvarReceita(receita, banco){
-    if(confirmacao("Salvar receita? ") === false){
+    if(!confirmacao("Salvar receita? ")){
          banco.push(receita);
          console.log("\n >>> RECEITA SALVA COM SUCESSO! <<<\n");
     }else console.log("\n >>> RECEITA NÃO SALVA! <<<\n"); 
 }
 
 function deletarReceita(banco){
-    let element = readlineSync.question("Qual o indice da receita a ser deletada?\n(OBS: os indicies comecam por 0): "); 
+    console.log(`A ${companyName} possui ${banco.length} receitas cadastradas.\n`);
+    let element = readlineSync.question("\nQual o indice da receita a ser deletada?\n(OBS: os indicies comecam por 0): "); 
     
     if(element < banco.length){
-        if(confirmacao("Deletar receita? ") === false){
+        if(!confirmacao("Deletar receita? ")){
             banco.splice(element, 1);
             console.log(`\n >>> RECEITA ${element} DELETADA COM SUCESSO! <<<\n`);
        }else console.log("\n >>> OPERACAO ABORTADA! <<<\n"); 
     }else{
-        console.log(`\n >>> RECEITA '\${elemente}'\ NAO ENCONTRADA OU INEXISTENTE! <<<\N`);
-    }
-
-
-       
+        console.log(`\n >>> RECEITA \"${element}\" NAO ENCONTRADA OU INEXISTENTE! <<<\n`);
+    }       
 }
 
 function exibirReceita(banco){
     console.log(`A ${companyName} possui ${banco.length} receitas cadastradas.\n`);
-    function mostrar(element){console.log(element);}
+    function mostrar(element){
+        console.log(element);
+        console.log("\n");
+    }
     banco.forEach(mostrar);
 }
 
 //OK, daqui pra frente vamos criar a interface de interação com o usuário
 
 //Vamos mostrar o nome da empresa:
-console.log("***********************************************");
-console.log(`     ${companyName}       `);
+console.log("\n************************************************\n");
+console.log(`   Bem vindo(a) ao gerenciador de receitas da\n      ${companyName}\n`);
 console.log("***********************************************\n");
-console.log(`Bom vindo(a) ao gerenciador de receitas da\n ${companyName}\n`);
+
 
 let continuarLoop;
 do{
@@ -212,6 +205,9 @@ do{
         case "deletar":
         case "Deletar":
         case "DELETAR":
+        case "excluir":
+        case "Excluir":
+        case "EXCLUIR":
                 deletarReceita(bancoDeReceitas);
                 continuarLoop = true;
                 break;
@@ -219,7 +215,7 @@ do{
         case "Sair":
         case "SAIR":
         case "exit":
-                console.log(`\n >>> OBRIGADO POR UTILIZAR O EDITOR DE RECEITAS DA <<<\n    ${companyName}\n`);
+                console.log(`\n  OBRIGADO POR UTILIZAR O EDITOR DE RECEITAS DA \n    ${companyName}\n`);
                 continuarLoop = false;
                 break;
         default:
