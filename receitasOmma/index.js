@@ -181,7 +181,7 @@ do{
                 break;
         default:
             console.log(`\n >>> O COMANDO \"${fazer}\" NAO E VALIDO, TENTE NOVAMENTE <<<\n`);
-
+            continuarLoop = true;
     }
 
 }while(continuarLoop);
